@@ -1,11 +1,13 @@
 # JetTank
 An adaptation of Jetbot built on NVIDIA Jetson Nano.
 
+### Images:
+
 ![jetTank](https://github.com/estods3/JetTank/blob/master/IMG_20191010_211854.jpg)
 
 ![jetTank2](https://github.com/estods3/JetTank/blob/master/IMG_20191010_211857.jpg)
 
-Features:
+### Features:
 
 Uses a homemade motor driver breakout board using an H bridge IC.
 
