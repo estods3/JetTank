@@ -10,8 +10,8 @@ import time
 #motorRightNeg = 
 
 #vision
-thresholdLeft = 340 #higher X-values are on the right side of the screen, thus we need to turn left if the line is above this value
-thresholdRight = 300 #lower X-values are on the left side of the screen, thus we need to turn right if the line is below this value
+thresholdLeft = 300 #lower X-values are on the left side of the screen, thus we need to turn left if the line is below this value
+thresholdRight = 340 #higher X-values are on the right side of the screen, thus we need to turn right if the line is above this value
 thresholdNoLineLeft = 30 #If the line is too far right, it is past this threshold to see in order to turn left
 thresholdNoLineRight = 600 #If the line is too far left, it is past this threshold to see in order to turn right
 movingAverageLength = 3
@@ -42,7 +42,7 @@ try:
         mask = cv2.erode(thresh1, None, iterations=2)
         mask = cv2.dilate(mask, None, iterations=2)
         h, w = mask.shape
-        mask = mask[int(0):int(h), 0:w]
+        mask = mask[int(1*h/3):int(h), 0:w]
         cv2.imwrite("c.jpg", mask)
         # Find all contours in frame
         something, contours, hierarchy = cv2.findContours(mask.copy(),1,cv2.CHAIN_APPROX_NONE)
