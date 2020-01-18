@@ -70,8 +70,8 @@ try:
                 print(str(round(elapsedTime)) + "    Turning Right!            Avg: " + str(round(av)) + "      Last: " + str(cx))
 
             if av < thresholdRight and av > thresholdLeft:
-                #Condition 2 Motion: Straight
-                motorcontrol.straight()
+                #Condition 2 Motion: Forward
+                motorcontrol.forward()
                 time.sleep(0.03)
                 motorcontrol.stop()
                 print(str(round(elapsedTime)) + "    Going Straight!!          Avg: " + str(round(av)) + "      Last: " + str(cx))

@@ -11,7 +11,7 @@ def initializeMotorPins():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup([motorLeftPos, motorLeftNeg, motorRightPos, motorRightNeg], GPIO.OUT, initial=GPIO.LOW)
 
-def straight():
+def forward():
     GPIO.output(motorRightPos, GPIO.HIGH)
     GPIO.output(motorRightNeg, GPIO.LOW)
     GPIO.output(motorLeftPos, GPIO.HIGH)
@@ -40,6 +40,12 @@ def rightPivotTurn():
     GPIO.output(motorRightNeg, GPIO.HIGH)
     GPIO.output(motorLeftPos, GPIO.HIGH)
     GPIO.output(motorLeftNeg, GPIO.LOW)
+
+def backward():
+    GPIO.output(motorRightPos, GPIO.LOW)
+    GPIO.output(motorRightNeg, GPIO.HIGH)
+    GPIO.output(motorLeftPos, GPIO.LOW)
+    GPIO.output(motorLeftNeg, GPIO.HIGH)
 
 def stop():
     GPIO.output([motorLeftPos, motorLeftNeg, motorRightPos, motorRightNeg], GPIO.LOW)
