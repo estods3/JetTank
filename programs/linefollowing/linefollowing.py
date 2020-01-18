@@ -11,6 +11,7 @@ if not(cap.isOpened()):
     print("Could not open camera")
 
 try:
+    movingaverage = [250-95] * 5
     while(1):
 
         ret, frame = cap.read()
@@ -39,34 +40,40 @@ try:
             M = cv2.moments(c)
             # Find x-axis centroid using image moments
             cx = int(M['m10']/M['m00'])
-            print(cx)
-            if cx >= 250:
+            #print(cx)
+            movingaverage.insert(0, cx)
+            movingaverage.pop()
+            av = sum(movingaverage)/len(movingaverage)
+            #print(cx)
+            if av >= 250:
                 #Condition 1 Motion: Right
                 GPIO.output(15, GPIO.LOW)
                 GPIO.output(12, GPIO.LOW)
                 GPIO.output(31, GPIO.HIGH)
                 GPIO.output(32, GPIO.LOW)
-                print("1")
+                print("Turning Right!            Avg: " + str(round(av)) + "      Last: " + str(cx))
 
-            if cx < 250 and cx > 95:
+            if av < 250 and av > 95:
                 #Condition 2 Motion: Straight
                 GPIO.output(15, GPIO.HIGH)
                 GPIO.output(12, GPIO.LOW)
                 GPIO.output(31, GPIO.HIGH)
                 GPIO.output(32, GPIO.LOW)
-                print("2")
+                print("Going Straight!!          Avg: " + str(round(av)) + "      Last: " + str(cx))
 
-            if cx <= 95:
+
+            if av <= 95:
                 #Condition 3 Motion: Left
                 GPIO.output(15, GPIO.HIGH)
                 GPIO.output(12, GPIO.LOW)
                 GPIO.output(31, GPIO.LOW)
                 GPIO.output(32, GPIO.LOW)
-                print("3")
+                print("Turning Left!             Avg: " + str(round(av)) + "      Last: " + str(cx))
 
-            if cx >= 500:
+
+            if av >= 600:
                 GPIO.output([15,12,31,32], GPIO.LOW)
-                print("No More Line!")
+                print("No More Line!             Avg: " + str(round(av)))
 
 except(KeyboardInterrupt,SystemExit):
     print("---- Exiting ----")
