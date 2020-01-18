@@ -40,7 +40,7 @@ try:
             # Find x-axis centroid using image moments
             cx = int(M['m10']/M['m00'])
             print(cx)
-            if cx >= 200:
+            if cx >= 250:
                 #Condition 1 Motion: Right
                 GPIO.output(15, GPIO.LOW)
                 GPIO.output(12, GPIO.LOW)
@@ -48,7 +48,7 @@ try:
                 GPIO.output(32, GPIO.LOW)
                 print("1")
 
-            if cx < 200 and cx > 95:
+            if cx < 250 and cx > 95:
                 #Condition 2 Motion: Straight
                 GPIO.output(15, GPIO.HIGH)
                 GPIO.output(12, GPIO.LOW)
@@ -66,6 +66,7 @@ try:
 
             if cx >= 500:
                 GPIO.output([15,12,31,32], GPIO.LOW)
+                print("No More Line!")
 
 except(KeyboardInterrupt,SystemExit):
     print("---- Exiting ----")
