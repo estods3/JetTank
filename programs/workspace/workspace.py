@@ -45,7 +45,6 @@ def lookForWorkspaceBoundary():
         M = cv2.contourArea(c)
     else:
         M = 0
-    print(M)
     return M > boundaryAreaThreshold
 
 ## MAIN LOOP
@@ -73,7 +72,7 @@ try:
             time.sleep(0.8)
         else:
             motorcontrol.forward()
-            time.sleep(0.1)
+            time.sleep(0.2)
             motorcontrol.stop()
             print(str(elapsedTime) + "    Going Straight!!")
 
