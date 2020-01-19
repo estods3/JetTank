@@ -15,9 +15,17 @@ motorcontrol.initializeMotorPins()
 cap = cv2.VideoCapture(0)
 if not(cap.isOpened()):
     print("Could not open camera")
+#cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
 def lookForWorkspaceBoundary():
-    ret, frame = cap.read()
+    #ret, frame = cap.read()
+    while(True):
+        prev_time=time.time()
+        ref=cap.grab()
+        if (time.time()-prev_time)>0.030:#something around 33 FPS
+            break
+    ret, frame = cap.retrieve(ref)
+
     cv2.imwrite("a.jpg", frame)
     # convert to grayscale, gaussian blur, and threshold
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
