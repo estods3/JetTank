@@ -18,6 +18,7 @@ if not(cap.isOpened()):
 
 def lookForWorkspaceBoundary():
     ret, frame = cap.read()
+    cv2.imwrite("a.jpg", frame)
     # convert to grayscale, gaussian blur, and threshold
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray,(5,5),0)
@@ -27,7 +28,7 @@ def lookForWorkspaceBoundary():
     mask = cv2.dilate(mask, None, iterations=2)
     h, w = mask.shape
     maskCloser = mask[int(3*h/5):int(h), 0:w]
-    cv2.imwrite("a.jpg", maskCloser)
+    cv2.imwrite("c.jpg", maskCloser)
     # Find all contours in frame: Close Contour and Farther Counter
     something, contours, hierarchy = cv2.findContours(maskCloser.copy(),1,cv2.CHAIN_APPROX_NONE)
     if len(contours) > 0:
