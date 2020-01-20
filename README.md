@@ -1,17 +1,21 @@
 # JetTank
 An adaptation of Jetbot built on NVIDIA Jetson Nano.
 
-### Images:
+## Description
 
 ![jetTank](https://github.com/estods3/JetTank/blob/master/documentation/IMG_20191010_211854.jpg)
 
-![jetTank2](https://github.com/estods3/JetTank/blob/master/documentation/IMG_20191010_211857.jpg)
+### Differences from Official NVIDIA Jetbot
+1. Uses a homemade motor driver breakout board using an H bridge IC.
 
-### Features:
+2. Uses an off-the-shelf Logitec USB camera.
 
-Uses a homemade motor driver breakout board using an H bridge IC.
+## Programs
 
-Uses an off-the-shelf Logitec USB camera.
+### Line Following
+![jetTank](https://github.com/estods3/JetTank/blob/master/documentation/linefollowing.gif)
 
-Offroad Tires.
 
+
+### Workspace
+![jetTank](https://github.com/estods3/JetTank/blob/master/documentation/workspace.gif)
