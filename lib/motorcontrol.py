@@ -1,10 +1,12 @@
 import Jetson.GPIO as GPIO
+from loadCalFile import loadCalFile
 
 ## ------------------ CALIBRATION --------------------
-motorLeftPos = 31
-motorLeftNeg = 32
-motorRightPos = 15
-motorRightNeg = 12
+cal = loadCalFile()
+motorLeftPos = int(cal[cal.index("motorLeftPositivePin") + 1])
+motorLeftNeg = int(cal[cal.index("motorLeftNegativePin") + 1])
+motorRightPos = int(cal[cal.index("motorLeftPositivePin") + 1])
+motorRightNeg = int(cal[cal.index("motorLeftPositivePin") + 1])
 
 ## ------------ JETBOT MOTOR FUNCTIONS ---------------
 def initializeMotorPins():
