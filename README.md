@@ -12,8 +12,9 @@ Using an H bridge motor controller means that the Jetson Nano is tied to a posit
 2. Uses an off-the-shelf Logitec USB camera.
 
 ## Programs
+Below are the programs included in this repository.
 
-### Line Following
+### 1. Line Following
 
 This program will perform the classic line following exercise where the robot will use the camera to identify a line and follow it.
 
@@ -21,12 +22,17 @@ This program will perform the classic line following exercise where the robot wi
 
 
 
-### Workspace
+### 2. Workspace
 
 This program uses a line as a boundary of a workspace in which the robot is intended to be confined to. The robot will manuever about the workspace, stopping and turning around each time it reaches the boundary of the workspace.
 
 ![jetTank](https://github.com/estods3/JetTank/blob/master/documentation/workspace.gif)
 
 
-### Remote Control
+### 3. Remote Control
+A program to remotely control the robot.
+coming soon!
+
+## Debugging Environment
+A ROS-based debugging environment to view camera feed and robot in rViz.
 coming soon!
