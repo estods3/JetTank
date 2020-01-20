@@ -21,7 +21,14 @@ if not(cap.isOpened()):
     print("Could not open camera")
 
 def findLine():
-    ret, frame = cap.read()
+    #ret, frame = cap.read()
+    #ret, frame = cap.read()
+    while(True):
+        prev_time=time.time()
+        ref=cap.grab()
+        if (time.time()-prev_time)>0.030:#something around 33 FPS
+            break
+    ret, frame = cap.retrieve(ref)
     # convert to grayscale, gaussian blur, and threshold
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray,(5,5),0)
@@ -74,28 +81,27 @@ try:
             av = sum(movingaverage)/len(movingaverage)
             turnsleeptime = (abs((av - (thresholdRight - thresholdLeft))/(thresholdRight - thresholdLeft)) * 0.006) + 0.002
         else:
-            av = 0
-            print("NO LINE AVAILABLE: SWEEPING TO SEE LINE")
+            print("NO LINE AVAILABLE: USING LAST AV VALUE")
 
         ## -------------- MOTOR ACTUATION ----------------
         if av < thresholdNoLineRight and av >= thresholdRight:
             #Condition 1 Motion: Right
             motorcontrol.rightPivotTurn()
-            time.sleep(turnsleeptime + 0.003)
+            time.sleep(turnsleeptime + 0.03)
             motorcontrol.stop()
             print(str(round(elapsedTime)) + "    Turning Right!            Avg: " + str(round(av)) + "      Last: " + str(cx))
 
         if av < thresholdRight and av > thresholdLeft:
             #Condition 2 Motion: Forward
             motorcontrol.forward()
-            time.sleep(0.03)
+            time.sleep(0.05)
             motorcontrol.stop()
             print(str(round(elapsedTime)) + "    Going Straight!!          Avg: " + str(round(av)) + "      Last: " + str(cx))
 
         if av > thresholdNoLineLeft and av <= thresholdLeft:
             #Condition 3 Motion: Left
             motorcontrol.leftPivotTurn()
-            time.sleep(turnsleeptime + 0.008)
+            time.sleep(turnsleeptime + 0.03)
             motorcontrol.stop()
             print(str(round(elapsedTime)) + "    Turning Left!             Avg: " + str(round(av)) + "      Last: " + str(cx))
 

@@ -1,5 +1,7 @@
 #Calibration File
-motorLeftPositivePin = 
-motorLeftNegativePin = 
-motorRightPositivePin = 
-motorRightNegativePin = 
+
+#Motor GPIO Pins
+motorLeftPositivePin = 31
+motorLeftNegativePin = 32
+motorRightPositivePin = 15 
+motorRightNegativePin = 12
