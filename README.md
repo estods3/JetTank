@@ -11,6 +11,49 @@ Using an H bridge motor controller means that the Jetson Nano is tied to a posit
 
 2. Uses an off-the-shelf Logitec USB camera.
 
+## Setup
+
+### Hardware
+
+
+### Software
+
+#### ROS
+
+1. list IP and hostnames of the JetTank and host PC used to operate the debugging interface in:
+
+```/etc/hosts```
+
+on both the JetTank file and host PC file.
+
+2. On JetTank, edit the ~/.bashrc file to point to the ROS_MASTER_URI of the JetTank:
+
+```export ROS_MASTER_URI=http://jetson-nano:11311
+export ROS_HOSTNAME=jetson-nano
+export ROS_IP=jetson-nano
+```
+
+3. On host PC, edit the ~/.bashrc file to point to the ROS_MASTER_URI of the JetTank as shown below:
+
+```export ROS_MASTER_URI=http://jetson-nano:11311
+export ROS_HOSTNAME=optiplexPC
+export ROS_IP=optiplexPC
+```
+4. Start ROS on the JetTank by opening an ssh terminal and typing:
+
+```source ~/.bashrc```
+
+followed by:
+
+```roscore```
+
+5. To start using the JetTank, open another SSH terminal and type:
+
+```source ~/.bashrc```
+
+and execute any of the programs described below.
+
+
 ## Programs
 Below are the programs included in this repository.
 
