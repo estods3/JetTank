@@ -55,7 +55,7 @@ and execute any of the programs described below.
 
 
 ## Programs
-Below are the programs included in this repository.
+Below are the programs included in this repository. All programs are intended to be run with Python3
 
 ### 1. Line Following
 
