@@ -3,9 +3,11 @@ from tkinter import *
 import rospy
 from std_msgs.msg import Int16
 import sys,tty,termios
+#import cv2
 
-RCpub = rospy.Publisher('cc_remotecontrol_command', Int16, queue_size=10)
-CCpub = rospy.Publisher('cc_modeselection_command', Int16, queue_size=10)
+RCpub = rospy.Publisher('cc_remotecontrol_motorcontrol', Int16, queue_size=10)
+CCpub = rospy.Publisher('cc_mode_selection', Int16, queue_size=10)
+#Todo create subscriber and handler for image from vision system, handler decodes and displays image on new window
 RCmode = False
 
 def RC_left_handler(event):
@@ -97,4 +99,5 @@ if __name__ == '__main__':
         rospy.init_node('command_center', anonymous=True)
         main()
     except(KeyboardInterrupt,SystemExit):
+        #todo catch cv2.closeallwindows()
         print("---- Exiting ----")
