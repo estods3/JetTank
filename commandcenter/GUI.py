@@ -96,7 +96,7 @@ def main():
 
 if __name__ == '__main__':
     try:
-        rospy.init_node('command_center', anonymous=True)
+        rospy.init_node('pc_command_center_node', anonymous=True)
         main()
     except(KeyboardInterrupt,SystemExit):
         #todo catch cv2.closeallwindows()

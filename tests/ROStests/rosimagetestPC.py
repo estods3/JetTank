@@ -33,10 +33,8 @@ class image_converter:
 def main(args):
     ic = image_converter()
     rospy.init_node('image_converter', anonymous=True)
-    try:
-        rospy.spin()
-    except KeyboardInterrupt:
-        print("Shutting down")
+    rospy.spin()
+    print("Shutting down")
     cv2.destroyAllWindows()
 
 if __name__ == '__main__':
