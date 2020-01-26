@@ -1,8 +1,6 @@
-import cv2
 import time
 import sys
-sys.path.append('../../lib')
-import motorcontrol
+import rospy
 
 ## ------------------ CALIBRATION --------------------
 #vision (center is 320)
@@ -12,61 +10,15 @@ thresholdNoLineLeft = 5 #If the line is too far right, it is past this threshold
 thresholdNoLineRight = 635 #If the line is too far left, it is past this threshold to see in order to turn right
 movingAverageLength = 2
 
-## ----------------- GPIO SETUP ----------------------
-motorcontrol.initializeMotorPins()
 
-## -----------CAMERA INITIALIZATION -----------------
-cap = cv2.VideoCapture(0)
-if not(cap.isOpened()):
-    print("Could not open camera")
+class lineFollowingMotionPlanning:
+    def __init__(self):
+        self.visionsub = rospy.Subscriber("jt_vision_bw_contours_cx", )
 
-def findLine():
-    #ret, frame = cap.read()
-    #ret, frame = cap.read()
-    while(True):
-        prev_time=time.time()
-        ref=cap.grab()
-        if (time.time()-prev_time)>0.030:#something around 33 FPS
-            break
-    ret, frame = cap.retrieve(ref)
-    # convert to grayscale, gaussian blur, and threshold
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    blur = cv2.GaussianBlur(gray,(5,5),0)
-    #cv2.imwrite("a.jpg", blur)
-    ret,thresh1 = cv2.threshold(blur,100,255,cv2.THRESH_BINARY_INV)
-    #cv2.imwrite("b.jpg", thresh1)
-    # Erode to eliminate noise, Dilate to restore eroded parts of image
-    mask = cv2.erode(thresh1, None, iterations=2)
-    mask = cv2.dilate(mask, None, iterations=2)
-    h, w = mask.shape
-    maskCloser = mask[int(2*h/3):int(h), 0:w]
-    maskFarther = mask[int(1*h/3):int(2*h/3), 0:w]
-    #cv2.imwrite("c.jpg", maskCloser)
-    # Find all contours in frame: Close Contour and Farther Counter
-    something, contoursClose, hierarchy = cv2.findContours(maskCloser.copy(),1,cv2.CHAIN_APPROX_NONE)
-    something, contoursFarther, hierarchy = cv2.findContours(maskFarther.copy(),1,cv2.CHAIN_APPROX_NONE)
-    cx = []
-    for contours in [contoursClose, contoursFarther]:
-        if len(contours) > 0:
-            # Find largest contour area and image moments
-            c = max(contours, key = cv2.contourArea)
-            M = cv2.moments(c)
-            # Find x-axis centroid using image moments
-            try:
-                cx.append(int(M['m10']/M['m00']))
-            except(ZeroDivisionError):
-                cx.append(0)
-                print("division by zero")
-    return cx
-
-## MAIN LOOP
-try:
-    movingaverage = [thresholdRight - thresholdLeft] * movingAverageLength
-    initialTime = time.time()
-    while(1):
-
+    def imageRecieved(data):
         ## ----------------- VISION -----------------------
-        cx = findLine()
+        # TODO - Do something with data
+        #cx = findLine()
 
         ## --------------- MOTOR CONTROL ------------------
         elapsedTime = time.time() - initialTime
@@ -110,10 +62,13 @@ try:
             motorcontrol.stop()
             print(str(round(elapsedTime)) + "    Stopping!                 Avg: " + str(round(av)))
 
-except(KeyboardInterrupt,SystemExit):
+def main(args):
+    movingaverage = [thresholdRight - thresholdLeft] * movingAverageLength
+    initialTime = time.time()
+    lf = lineFollowingMotionPlanning()
+    rospy.init_node("jt_planning_linefollowing_node", anonymous=True)
+    rospy.spin()
     print("---- Exiting ----")
-    cap.release()
-    cv2.destroyAllWindows()
-    motorcontrol.stop()
-    motorcontrol.cleanup()
-    print("---- Done ----")
+
+if __name__ == '__main__':
+    main(sys.argv)
