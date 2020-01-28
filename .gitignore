@@ -25,6 +25,27 @@ wheels/
 *.egg
 MANIFEST
 
+# ROS Catkin
+.catkin_tools/
+.catkin_workspace
+devel/
+logs/
+build/
+bin/
+#lib/
+msg_gen/
+srv_gen/
+msg/*Action.msg
+msg/*ActionFeedback.msg
+msg/*ActionGoal.msg
+msg/*ActionResult.msg
+msg/*Feedback.msg
+msg/*Goal.msg
+msg/*Result.msg
+msg/_*.py
+build_isolated/
+devel_isolated/
+
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
