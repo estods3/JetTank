@@ -7,7 +7,7 @@ import inspect
 def loadCalFile():
 
     calwd = os.path.abspath(inspect.getfile(loadCalFile))
-    calwd = calwd.split("lib")
+    calwd = calwd.split("src")
     with open(os.path.join(calwd[0], "calibration.txt")) as f:
         content = f.readlines()
 

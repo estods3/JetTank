@@ -9,7 +9,7 @@ import motorcontrol
 
 class motorcontroller:
     def __init__(self):
-        self.mode = 4 #"stop", default
+        self.mode = 4 # "stop", default
         motorcontrol.initializeMotorPins()
         self.modeSub = rospy.Subscriber('cc_mode_selection', Int16, self.setModeSelectionCallback)
         #self.lfsub = rospy.Subscriber()
@@ -60,7 +60,7 @@ def main(args):
     rospy.spin()
     motorcontrol.stop()
     motorcontrol.cleanup()
-    print("---- Exiting ----")
+    print("---- motor controller node exiting ----")
 
 if __name__ == '__main__':
     main(sys.argv)

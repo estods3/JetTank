@@ -7,12 +7,12 @@ from std_msgs.msg import Int32
 from std_msgs.msg import Int16MultiArray
 
 class vision:
-    def __init__(self):
+    def __init__(self, caparg):
         ## ----------- CAMERA IITIALIZATION -----------------
         #self.linePub = rospy.Publisher("jt_vision_bw_contours_cx", Int16MultiArray)
         self.bPub = rospy.Publisher("jt_vision_bw_countour_maxarea", Int32, queue_size=5)
-        self.r = rospy.Rate(30)
-        self.cap = cv2.VideoCapture(0)
+        self.r = rospy.Rate(60)
+        self.cap = caparg
         if not(self.cap.isOpened()):
             print("Could not open camera")
 
@@ -80,13 +80,11 @@ class vision:
         return M
 
 def main(args):
-    try:
-        rospy.init_node('jt_vision_node', anonymous=True)
-        vis = vision()
-    except(KeyboardInterrupt, SystemExit):
-        print("---- Exiting ----")
-        cap.release()
-        print("---- Done ---")
+    rospy.init_node('jt_vision_node', anonymous=True)
+    cap = cv2.VideoCapture(0)
+    vis = vision(cap)
+    cap.release()
+    print("--- vision node exiting ---")
 
 if __name__ == '__main__':
     main(sys.argv)
