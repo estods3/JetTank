@@ -1,4 +1,4 @@
-#/usr/bin/env python3
+#!/usr/bin/env python3
 from tkinter import *
 import rospy
 from std_msgs.msg import Int16
