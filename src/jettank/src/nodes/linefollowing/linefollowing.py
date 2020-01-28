@@ -14,6 +14,8 @@ movingAverageLength = 2
 class lineFollowingMotionPlanning:
     def __init__(self):
         self.visionsub = rospy.Subscriber("jt_vision_bw_contours_cx", )
+        self.movingaverage = [thresholdRight - thresholdLeft] * movingAverageLength
+        self.initialTime = time.time()
 
     def imageRecieved(data):
         ## ----------------- VISION -----------------------
@@ -21,7 +23,7 @@ class lineFollowingMotionPlanning:
         #cx = findLine()
 
         ## --------------- MOTOR CONTROL ------------------
-        elapsedTime = time.time() - initialTime
+        elapsedTime = time.time() - self.initialTime
         if (len(cx) >= 1 and cx[0] > 0):
             movingaverage.insert(0, cx[0])
             movingaverage.pop()
