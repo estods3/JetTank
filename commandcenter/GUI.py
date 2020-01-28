@@ -5,7 +5,7 @@ from std_msgs.msg import Int16
 import sys,tty,termios
 #import cv2
 
-RCpub = rospy.Publisher('cc_remotecontrol_motorcontrol', Int16, queue_size=10)
+RCpub = rospy.Publisher('cc_remotecontrol_motorcontrol_command', Int16, queue_size=10)
 CCpub = rospy.Publisher('cc_mode_selection', Int16, queue_size=10)
 #Todo create subscriber and handler for image from vision system, handler decodes and displays image on new window
 RCmode = False
