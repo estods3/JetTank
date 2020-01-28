@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="commandcenter" name="commandcenter" type="GUI.py" output="screen"></node>
+</launch>
