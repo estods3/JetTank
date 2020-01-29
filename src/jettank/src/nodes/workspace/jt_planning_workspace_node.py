@@ -42,6 +42,7 @@ class workspaceMotionPlanning:
             time.sleep(0.2)
             self.motorpub.publish(10) #stop=10
             #print(str(elapsedTime) + "    Going Straight!!")
+        self.r.sleep()
 
 def main(args):
     rospy.init_node("jt_planning_workspace_node", anonymous=True)
