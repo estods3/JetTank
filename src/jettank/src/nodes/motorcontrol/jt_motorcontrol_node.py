@@ -18,6 +18,7 @@ class motorcontroller:
 
     def setModeSelectionCallback(self, data):
         self.mode = data.data
+        print(self.mode)
         if self.mode == 4:
             motorcontrol.stop()
 

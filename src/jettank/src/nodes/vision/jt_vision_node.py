@@ -28,14 +28,16 @@ class vision:
             self.r.sleep()
 
     def getMaskedImage(self):
-        while(True):
-            prev_time=time.time()
-            ref=self.cap.grab()
-            if (time.time()-prev_time)>0.030:#something around 33 FPS
-                break
+        #while(True):
+        #    prev_time=time.time()
+        #    ref=self.cap.grab()
+        #    if (time.time()-prev_time)>0.030:#something around 33 FPS
+        #        break
+        ref=self.cap.grab()
         ret, frame = self.cap.retrieve(ref)
+        resizedFrame = cv2.resize(frame, (int(320), int(480/2)), interpolation = cv2.INTER_AREA)
         # convert to grayscale, gaussian blur, and threshold
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(resizedFrame, cv2.COLOR_BGR2GRAY)
         blur = cv2.GaussianBlur(gray,(5,5),0)
         #cv2.imwrite("a.jpg", blur)
         ret,thresh1 = cv2.threshold(blur,100,255,cv2.THRESH_BINARY_INV)
@@ -77,7 +79,7 @@ class vision:
             M = int(cv2.contourArea(c))
         else:
             M = 0
-        return M
+        return M*2
 
 def main(args):
     rospy.init_node('jt_vision_node', anonymous=True)
