@@ -10,7 +10,7 @@ class vision:
     def __init__(self, caparg):
         ## ----------- CAMERA IITIALIZATION -----------------
         #self.linePub = rospy.Publisher("jt_vision_bw_contours_cx", Int16MultiArray)
-        self.bPub = rospy.Publisher("jt_vision_bw_countour_maxarea", Int32, queue_size=5)
+        self.bPub = rospy.Publisher("jt_vision_bw_countour_maxarea", Int32, queue_size=1)
         self.r = rospy.Rate(60)
         self.cap = caparg
         if not(self.cap.isOpened()):

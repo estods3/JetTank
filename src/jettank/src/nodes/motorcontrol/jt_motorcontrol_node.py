@@ -11,10 +11,10 @@ class motorcontroller:
     def __init__(self):
         self.mode = 4 # "stop", default
         motorcontrol.initializeMotorPins()
-        self.modeSub = rospy.Subscriber('cc_mode_selection', Int16, self.setModeSelectionCallback)
+        self.modeSub = rospy.Subscriber('cc_mode_selection', Int16, self.setModeSelectionCallback, queue_size=1)
         #self.lfsub = rospy.Subscriber()
-        self.wssub = rospy.Subscriber('jt_workspace_motorcontrol_command', Int16, self.wscb)
-        self.rcsub = rospy.Subscriber('cc_remotecontrol_motorcontrol_command', Int16, self.rccb)
+        self.wssub = rospy.Subscriber('jt_workspace_motorcontrol_command', Int16, self.wscb, queue_size=1)
+        self.rcsub = rospy.Subscriber('cc_remotecontrol_motorcontrol_command', Int16, self.rccb, queue_size=1)
 
     def setModeSelectionCallback(self, data):
         self.mode = data.data
