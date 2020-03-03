@@ -1,3 +1,4 @@
 <launch>
     <node pkg="commandcenter" name="commandcenter" type="GUI.py" output="screen"></node>
+    <node pkg="commandcenter" name="pc_command_center_video_viewer_node" type=VideoFeed.py" output="screen"></node>
 </launch>

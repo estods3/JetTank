@@ -18,6 +18,7 @@ class workspaceMotionPlanning:
 
     def imageRecieved(self, data):
         ## ----------------- VISION ------------------
+        # determine if a boundary is present
         boundaryFound = data.data > boundaryAreaThreshold
         elapsedTime = round(time.time() - self.initialTime)
 
@@ -41,7 +42,6 @@ class workspaceMotionPlanning:
             time.sleep(0.1)
             self.motorpub.publish(10) #stop=10
             time.sleep(0.05)
-            #print(str(elapsedTime) + "    Going Straight!!")
         self.r.sleep()
 
 def main(args):
