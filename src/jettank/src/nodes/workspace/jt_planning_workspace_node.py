@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import cv2
 import time
 import sys
 import rospy

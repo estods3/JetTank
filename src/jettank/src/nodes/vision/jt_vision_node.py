@@ -9,7 +9,7 @@ from std_msgs.msg import Int16MultiArray
 class vision:
     def __init__(self, caparg):
         ## ----------- CAMERA IITIALIZATION -----------------
-        #self.linePub = rospy.Publisher("jt_vision_bw_contours_cx", Int16MultiArray)
+        self.linePub = rospy.Publisher("jt_vision_bw_contours_cx", Int16MultiArray, queue_size=1)
         self.bPub = rospy.Publisher("jt_vision_bw_countour_maxarea", Int32, queue_size=1)
         self.r = rospy.Rate(60)
         self.cap = caparg
@@ -17,13 +17,12 @@ class vision:
             print("Could not open camera")
 
         ## ---------- MAIN LOOP --------------
-        #cx = Int16MultiArray()
-        #M = Int16()
+        cx = Int16MultiArray()
         while(not rospy.is_shutdown()):
             maskedImage = self.getMaskedImage()
-            #cx.data = self.findLine(maskedImage)
+            cx.data = self.findLine(maskedImage)
             M = self.lookForWorkspaceBoundary(maskedImage)
-            #TODOself.linePub.publish(cx)
+            self.linePub.publish(cx)
             self.bPub.publish(M)
             self.r.sleep()
 
