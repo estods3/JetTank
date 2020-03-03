@@ -1,4 +1,5 @@
-#!/usr/bin/python3
+#!/usr/bin/python2
+from __future__ import print_function
 import sys
 import cv2
 import time
@@ -20,7 +21,7 @@ class vision:
         self.cap = caparg
 
         #Image Transfer
-        self.image_pub = rospy.Publisher("jt_vision_bw_image", Image)
+        self.image_pub = rospy.Publisher("jt_vision_bw_image", Image, queue_size=1)
         self.bridge = CvBridge()
 
         if not(self.cap.isOpened()):
@@ -33,8 +34,14 @@ class vision:
             maskedImage = self.getMaskedImage()
 
             #Image Transfer
+            scale_percent = 50 # percent of original size
+            width = int(maskedImage.shape[1] * scale_percent / 100)
+            height = int(maskedImage.shape[0] * scale_percent / 100)
+            dim = (width, height)
+            # resize image
+            maskedImage_resized = cv2.resize(maskedImage, dim, interpolation = cv2.INTER_AREA)
             try:
-                self.image_pub.publish(self.bridge.cv2_to_imgmsg(maskedImage, "mono8"))
+                self.image_pub.publish(self.bridge.cv2_to_imgmsg(maskedImage_resized, "mono8"))
             except CvBridgeError as e:
                 print(e)
 
