@@ -5,21 +5,29 @@ import cv2
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
+
 class image_converter:
     def __init__(self):
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber("jt_vision_bw_image", Image, self.callback)
 
     def callback(self, data):
+        ## Get Image
         try:
-            cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
+            img = self.bridge.imgmsg_to_cv2(data, "mono8")
         except CvBridgeError as e:
             print(e)
 
-        (rows,cols,channels) = cv_image.shape
-        if cols > 60 and rows > 60 :
-            cv2.circle(cv_image, (50,50), 10, 255)
-        cv2.imshow("Command Center Video Feed", cv_image)
+        ## Upscale Image Size
+        scale_percent = 220 # percent of original size
+        width = int(img.shape[1] * scale_percent / 100)
+        height = int(img.shape[0] * scale_percent / 100)
+        dim = (width, height)
+        # resize image
+        resizedImg = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+
+        ## Display Image
+        cv2.imshow("Command Center Video Feed", resizedImg)
         cv2.waitKey(3)
 
 def main(args):
