@@ -73,7 +73,7 @@ def main(args):
     rospy.init_node("jt_planning_linefollowing_node", anonymous=True)
     lf = lineFollowingMotionPlanning()
     rospy.spin()
-    print("---- Exiting ----")
+    print("--- planning line following exiting ---")
 
 if __name__ == '__main__':
     main(sys.argv)
