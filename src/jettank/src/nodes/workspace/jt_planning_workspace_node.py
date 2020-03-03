@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import cv2
 import time
 import sys
 import rospy
@@ -12,8 +11,8 @@ boundaryAreaThreshold = 2000
 
 class workspaceMotionPlanning:
     def __init__(self):
-        self.visionsub = rospy.Subscriber("jt_vision_bw_countour_maxarea", Int32, self.imageRecieved)
-        self.motorpub = rospy.Publisher("jt_workspace_motorcontrol_command", Int16, queue_size=5)
+        self.visionsub = rospy.Subscriber("jt_vision_bw_countour_maxarea", Int32, self.imageRecieved, queue_size=1)
+        self.motorpub = rospy.Publisher("jt_workspace_motorcontrol_command", Int16, queue_size=1)
         self.r = rospy.Rate(60)
         self.initialTime = time.time()
 
@@ -39,8 +38,9 @@ class workspaceMotionPlanning:
             time.sleep(0.8)
         else:
             self.motorpub.publish(8) #forward=8
-            time.sleep(0.2)
+            time.sleep(0.1)
             self.motorpub.publish(10) #stop=10
+            time.sleep(0.05)
             #print(str(elapsedTime) + "    Going Straight!!")
         self.r.sleep()
 
