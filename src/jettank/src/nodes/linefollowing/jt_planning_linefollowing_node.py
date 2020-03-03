@@ -44,43 +44,29 @@ class lineFollowingMotionPlanning:
         ## -------------- MOTOR ACTUATION ----------------
         if av < thresholdNoLineRight and av >= thresholdRight:
             #Condition 1 Motion: Right
-            #motorcontrol.rightPivotTurn()
-            #time.sleep(turnsleeptime + 0.03)
-            #motorcontrol.stop()
             self.motorpub.publish(7) #right=7
             time.sleep(turnsleeptime + 0.03)
             self.motorpub.publish(10) #stop=10
             time.sleep(0.1)
-            print(str(round(elapsedTime)) + "    Turning Right!            Avg: " + str(round(av)) + "      Last: " + str(cx))
 
         if av < thresholdRight and av > thresholdLeft:
             #Condition 2 Motion: Forward
-            #motorcontrol.forward()
-            #time.sleep(0.05)
-            #motorcontrol.stop()
             self.motorpub.publish(8) #forward=8
             time.sleep(0.05)
             self.motorpub.publish(10) #stop=10
             time.sleep(0.1)
-            print(str(round(elapsedTime)) + "    Going Straight!!          Avg: " + str(round(av)) + "      Last: " + str(cx))
 
         if av > thresholdNoLineLeft and av <= thresholdLeft:
             #Condition 3 Motion: Left
-            #motorcontrol.leftPivotTurn()
-            #time.sleep(turnsleeptime + 0.03)
-            #motorcontrol.stop()
             self.motorpub.publish(6) #left=6
             time.sleep(turnsleeptime + 0.03)
             self.motorpub.publish(10) #stop=10
             time.sleep(0.1)
-            print(str(round(elapsedTime)) + "    Turning Left!             Avg: " + str(round(av)) + "      Last: " + str(cx))
 
         if av >= thresholdNoLineRight or av <= thresholdNoLineLeft:
             #Condition 4 Motion: Stop
-            #motorcontrol.stop()
             self.motorpub.publish(10) #stop=10
             time.sleep(0.1)
-            print(str(round(elapsedTime)) + "    Stopping!                 Avg: " + str(round(av)))
         self.r.sleep()
 
 def main(args):
