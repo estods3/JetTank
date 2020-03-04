@@ -34,7 +34,7 @@ class vision:
             maskedImage = self.getMaskedImage()
 
             #Image Transfer
-            scale_percent = 50 # percent of original size
+            scale_percent = 10 # percent of original size
             width = int(maskedImage.shape[1] * scale_percent / 100)
             height = int(maskedImage.shape[0] * scale_percent / 100)
             dim = (width, height)
