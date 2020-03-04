@@ -9,7 +9,7 @@ from cv_bridge import CvBridge, CvBridgeError
 class image_converter:
     def __init__(self):
         self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("jt_vision_bw_image", Image, self.callback)
+        self.image_sub = rospy.Subscriber("jt_vision_bw_image", Image, self.callback, queue_size=1)
 
     def callback(self, data):
         ## Get Image
@@ -19,7 +19,7 @@ class image_converter:
             print(e)
 
         ## Upscale Image Size
-        scale_percent = 220 # percent of original size
+        scale_percent = 100 * 10 # percent of original size
         width = int(img.shape[1] * scale_percent / 100)
         height = int(img.shape[0] * scale_percent / 100)
         dim = (width, height)
