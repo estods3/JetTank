@@ -38,7 +38,7 @@ class lineFollowingMotionPlanning:
             av = sum(self.movingaverage)/len(self.movingaverage)
             turnsleeptime = (abs((av - (thresholdRight - thresholdLeft))/(thresholdRight - thresholdLeft)) * 0.006) + 0.002
         else:
-            print("NO LINE AVAILABLE: USING LAST AV VALUE")
+            print("LINE FOLLOWING: Warning - NO LINE AVAILABLE, USING LAST AV VALUE")
             av = 0
 
         ## -------------- MOTOR ACTUATION ----------------
@@ -73,7 +73,7 @@ def main(args):
     rospy.init_node("jt_planning_linefollowing_node", anonymous=True)
     lf = lineFollowingMotionPlanning()
     rospy.spin()
-    print("--- planning line following exiting ---")
+    print("LINE FOLLOWING: Exiting")
 
 if __name__ == '__main__':
     main(sys.argv)

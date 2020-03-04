@@ -48,7 +48,7 @@ def main(args):
     rospy.init_node("jt_planning_workspace_node", anonymous=True)
     ws = workspaceMotionPlanning()
     rospy.spin()
-    print("--- planning workspace node exiting ---")
+    print("WORKSPACE: Exiting")
 
 if __name__ == '__main__':
     main(sys.argv)

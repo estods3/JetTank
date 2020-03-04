@@ -4,13 +4,15 @@ import sys
 import cv2
 import time
 import rospy
+import numpy as np
 from std_msgs.msg import Int32
 from std_msgs.msg import Int16MultiArray
 
 #Image Transfer
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
-from cv_bridge import CvBridge, CvBridgeError
+from sensor_msgs.msg import CompressedImage
+#from cv_bridge import CvBridge, CvBridgeError
 
 class vision:
     def __init__(self, caparg):
@@ -21,11 +23,11 @@ class vision:
         self.cap = caparg
 
         #Image Transfer
-        self.image_pub = rospy.Publisher("jt_vision_bw_image", Image, queue_size=1)
-        self.bridge = CvBridge()
+        self.image_pub = rospy.Publisher("jt_vision_bw_image", CompressedImage, queue_size=1)
+        #self.bridge = CvBridge()
 
         if not(self.cap.isOpened()):
-            print("Could not open camera")
+            print("VISION: Error - Could not open camera")
 
         ## ---------- MAIN LOOP --------------
         # Images are pulled from camera, features are extracted and published to ROS network
@@ -33,18 +35,22 @@ class vision:
         while(not rospy.is_shutdown()):
             maskedImage = self.getMaskedImage()
 
-            #Image Transfer
-            scale_percent = 10 # percent of original size
+            ## Image Transfer
+            scale_percent = 5 # percent of original size
             width = int(maskedImage.shape[1] * scale_percent / 100)
             height = int(maskedImage.shape[0] * scale_percent / 100)
             dim = (width, height)
-            # resize image
+            #resize image
             maskedImage_resized = cv2.resize(maskedImage, dim, interpolation = cv2.INTER_AREA)
-            try:
-                self.image_pub.publish(self.bridge.cv2_to_imgmsg(maskedImage_resized, "mono8"))
-            except CvBridgeError as e:
-                print(e)
+            #self.image_pub.publish(self.bridge.cv2_to_imgmsg(maskedImage_resized, "mono8")
+            msg = CompressedImage()
+            msg.header.stamp = rospy.Time.now()
+            msg.format = "jpeg"
+            msg.data = np.array(cv2.imencode('.jpg', maskedImage_resized)[1]).tostring()
+            #Publish new image
+            self.image_pub.publish(msg)
 
+            ## Functionality
             cx.data = self.findLine(maskedImage)
             M = self.lookForWorkspaceBoundary(maskedImage)
             self.linePub.publish(cx)
@@ -109,7 +115,7 @@ def main(args):
     cap = cv2.VideoCapture(0)
     vis = vision(cap)
     cap.release()
-    print("--- vision node exiting ---")
+    print("VISION: Exiting")
 
 if __name__ == '__main__':
     main(sys.argv)
