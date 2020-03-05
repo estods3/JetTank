@@ -1,0 +1,4 @@
+cv2
+rospy
+cv_bridge
+

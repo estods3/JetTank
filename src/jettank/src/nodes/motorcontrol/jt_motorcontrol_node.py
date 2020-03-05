@@ -18,7 +18,6 @@ class motorcontroller:
 
     def setModeSelectionCallback(self, data):
         self.mode = data.data
-        print(self.mode)
         if self.mode == 4:
             motorcontrol.stop()
 
@@ -38,7 +37,7 @@ class motorcontroller:
         elif commandCode == 12:
             motorcontrol.rightTurn()
         else:
-            print("Motor Control Command Error")
+            print("MOTOR CONTROL: Error - Command Error")
 
     def lfcb(self, data):
         c = data.data
@@ -61,7 +60,7 @@ def main(args):
     rospy.spin()
     motorcontrol.stop()
     motorcontrol.cleanup()
-    print("---- motor controller node exiting ----")
+    print("MOTOR CONTROL: Exiting")
 
 if __name__ == '__main__':
     main(sys.argv)
