@@ -38,7 +38,7 @@ NOTE: it is worth following the official Jetbot wiki (https://github.com/NVIDIA-
 ## Jetson Programs
 Below are the programs included in this repository.
 
-<img src="https://github.com/estods3/JetTank/blob/master/documentation/linefollowing.gif" alt="drawing" width="300"/><img src="https://github.com/estods3/JetTank/blob/master/documentation/workspace.gif" alt="drawing" width="300"/>
+<img src="https://github.com/estods3/JetTank/blob/master/documentation/linefollowing.gif" alt="drawing" width="450"/><img src="https://github.com/estods3/JetTank/blob/master/documentation/workspace.gif" alt="drawing" width="400"/>
 
 ### 1. Line Following
 
