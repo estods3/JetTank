@@ -3,6 +3,7 @@ An adaptation of Jetbot built on NVIDIA Jetson Nano.
 
 ## Description
 A set of sample programs and a ROS-based software architecture used to demonstrate ROS-based controls and debugging.
+<img src="https://github.com/estods3/JetTank/blob/master/documentation/JetTankBuild.jpg" alt="drawing" width="200"/>
 ![jetTank](https://github.com/estods3/JetTank/blob/master/documentation/JetTankBuild.jpg =250x)
 picture of JetTank
 
