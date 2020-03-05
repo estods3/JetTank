@@ -19,14 +19,16 @@ on both the JetTank file and host PC file.
 
 2. On JetTank, edit the ~/.bashrc file to point to the ROS_MASTER_URI of the JetTank:
 
-```export ROS_MASTER_URI=http://jetson-nano:11311
+```
+export ROS_MASTER_URI=http://jetson-nano:11311
 export ROS_HOSTNAME=jetson-nano
 export ROS_IP=jetson-nano
 ```
 
 3. On host PC, edit the ~/.bashrc file to point to the ROS_MASTER_URI of the JetTank as shown below:
 
-```export ROS_MASTER_URI=http://jetson-nano:11311
+```
+export ROS_MASTER_URI=http://jetson-nano:11311
 export ROS_HOSTNAME=PC_HOST_NAME_HERE
 export ROS_IP=PC_HOST_IP_HERE
 ```
@@ -40,6 +42,7 @@ then type
 NOTE: you may need to use "chmod" on the python and shell scripts in the cloned repository for this to work properly.
 
 If the package builds successfully, start a roscore and the jettank nodes by running
+
 ```./runJettank.sh```
 
 NOTE: this shell script launches a roslaunch script which will automatically start roscore if one is not already started.
@@ -53,6 +56,7 @@ then type
 NOTE: you may need to use "chmod" on the python and shell scripts in the cloned repository for this to work properly.
 
 If the package builds successfully, start a roscore and the jettank nodes by running
+
 ```./runCC.sh```
 
 NOTE: this shell script launches a roslaunch script which will automatically start roscore if one is not already started.
