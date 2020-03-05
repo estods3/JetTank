@@ -56,11 +56,12 @@ This program uses a line as a boundary of a workspace in which the robot is inte
 A program to control robot remotely using a rostopic from "Command Center" on another PC.
 
 ## Command Center Debugging Environment (running on a linux PC)
-A ROS-based debugging environment to view camera feed and control the program JetTank is running.
+A ROS-based debugging environment to view camera feed and control the program JetTank is running. A screenshot of the interface is shown below. The program selection GUI is in the top left, the video feed in the top right, and a terminal text printout is shown in the background.
 
-<img src="https://github.com/estods3/JetTank/blob/master/documentation/commandcenter.png" alt="drawing"/>
 
-screenshot of Command Center GUI and Video Feed
+<p align="center">
+ <img src="https://github.com/estods3/JetTank/blob/master/documentation/commandcenter.png" alt="drawing"/>
+</p>
 
 ### GUI
 A GUI can be used to select between programs that are being run. The "Remote Control" button will allow the user to use the up, down, right, and left arrows on the host computer to control the robot remotely. The "STOP" button will immediately halt the robot.
