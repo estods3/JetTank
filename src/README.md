@@ -1,12 +1,13 @@
 # How to Run Programs
 Clone this repository onto both an nvidia jetson and a linux PC. Then follow the instuctions below to interface the two machines over wifi using ROS.
+```
   _____________           _____________
  |   NVIDIA    |         |    Linux    |
  |   Jetson    |-- wifi--|     PC      |
  |  (Running   |         |             |
  |   roscore)  |         |             |
  |_____________|         |_____________|
- 
+ ```
 ## Create connection between Robot and PC
 Once you have installed ROS and other dependencies on the Jetson and a PC (using the README.md files in each package folder), follow the steps below.
 
