@@ -4,6 +4,7 @@ An adaptation of Jetbot built on NVIDIA Jetson Nano.
 ## Description
 
 ![jetTank](https://github.com/estods3/JetTank/blob/master/documentation/JetTankBuild.jpg)
+picture of JetTank
 
 ### Differences from Official NVIDIA Jetbot
 1. Uses a homemade motor driver breakout board using an H bridge IC.
@@ -12,6 +13,7 @@ Using an H bridge motor controller means that the Jetson Nano is tied to a posit
 2. Uses an off-the-shelf Logitec USB camera.
 
 ## Setup
+Hardware and software setup.
 
 ### Hardware
 
@@ -53,6 +55,11 @@ followed by:
 
 and execute any of the programs described below.
 
+#### Dependencies
+
+1. ROS
+
+2. OpenCV
 
 ## Programs
 Below are the programs included in this repository. All programs are intended to be run with Python3
@@ -73,9 +80,8 @@ This program uses a line as a boundary of a workspace in which the robot is inte
 
 
 ### 3. Remote Control
-A program to remotely control the robot.
-coming soon!
 
-## Debugging Environment
-A ROS-based debugging environment to view camera feed and robot in rViz.
-coming soon!
+A program to control robot remotely using a rostopic from "Command Center" on another PC.
+
+## Command Center Debugging Environment
+A ROS-based debugging environment to view camera feed and control the program JetTank is running.
