@@ -7,7 +7,7 @@ A set of sample programs and a ROS-based software architecture used to demonstra
 <img src="https://github.com/estods3/JetTank/blob/master/documentation/JetTankBuild.jpg" alt="drawing" width="300"/>
 picture of JetTank
 
-<img src="https://github.com/estods3/JetTank/blob/master/documentation/nodegraph.png" alt="drawing" width="300"/>
+<img src="https://github.com/estods3/JetTank/blob/master/documentation/nodegraph.png" alt="drawing"/>
 screenshot of node graph
 
 ## Differences from Official NVIDIA Jetbot
@@ -37,6 +37,7 @@ NOTE: it is worth following the official Jetbot wiki (https://github.com/NVIDIA-
 
 ## Jetson Programs
 Below are the programs included in this repository.
+
 <img src="https://github.com/estods3/JetTank/blob/master/documentation/linefollowing.gif" alt="drawing" width="300"/>
 <img src="https://github.com/estods3/JetTank/blob/master/documentation/workspace.gif" alt="drawing" width="300"/>
 
@@ -56,7 +57,7 @@ A program to control robot remotely using a rostopic from "Command Center" on an
 ## Command Center Debugging Environment (running on a linux PC)
 A ROS-based debugging environment to view camera feed and control the program JetTank is running.
 
-<img src="https://github.com/estods3/JetTank/blob/master/documentation/commandcenter.png" alt="drawing" width="300"/>
+<img src="https://github.com/estods3/JetTank/blob/master/documentation/commandcenter.png" alt="drawing"/>
 
 screenshot of Command Center GUI and Video Feed
 
