@@ -11,7 +11,8 @@ from sensor_msgs.msg import CompressedImage
 class image_converter:
     def __init__(self):
         #self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("jt_vision_bw_image", CompressedImage, self.callback, queue_size=1)
+        #self.image_sub = rospy.Subscriber("jt_vision_bw_image", CompressedImage, self.callback, queue_size=1)
+        self.image_sub = rospy.Subscriber("/camera/image_raw", CompressedImage, self.callback, queue_size=1)
 
     def callback(self, data):
         ## Get Image
