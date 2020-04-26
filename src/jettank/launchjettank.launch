@@ -2,5 +2,6 @@
     <node pkg="jettank" name="vision" type="jt_vision_node.py" output="screen"></node>
     <node pkg="jettank" name="workspace" type="jt_planning_workspace_node.py" output="screen"></node>
     <node pkg="jettank" name="linefollowing" type="jt_planning_linefollowing_node.py" output="screen"></node>
+    <node pkg="jettank" name="positioning" type="jt_positioning_node.py" output="screen"></node>
     <node pkg="jettank" name="motorcontroller" type="jt_motorcontrol_node.py" cwd="node" output="screen"></node>
 </launch>

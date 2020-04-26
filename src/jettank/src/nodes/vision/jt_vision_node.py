@@ -23,7 +23,8 @@ class vision:
         self.cap = caparg
 
         #Image Transfer
-        self.image_pub = rospy.Publisher("jt_vision_bw_image", CompressedImage, queue_size=1)
+        #self.image_pub = rospy.Publisher("jt_vision_bw_image", CompressedImage, queue_size=1)
+        self.image_pub = rospy.Publisher("/camera/image_raw", CompressedImage, queue_size=1)
         #self.bridge = CvBridge()
 
         if not(self.cap.isOpened()):
