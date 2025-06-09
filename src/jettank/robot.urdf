@@ -1,15 +1,15 @@
-<robot name="Jet_Tank">
+<robot name="Fun_Robot">
   <link name="base_footprint"></link>
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint" />
     <child link="base_link" />
-    <origin xyz="0 0 0.5" rpy="0 0 0" />
+    <origin xyz="0 0 0.05" rpy="0 0 0" />
   </joint>
   <link name="base_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <box size="3.7939062066566853 2.2800234239081933 0.5232328098292442" />
+        <box size="0.135 0.08 0.05" />
       </geometry>
       <material name="base_link-material">
         <color rgba="1 0 0 1" />
@@ -18,7 +18,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <box size="3.7939062066566853 2.2800234239081933 0.5232328098292442" />
+        <box size="0.135 0.08 0.05" />
       </geometry>
     </collision>
     <inertial>
@@ -27,17 +27,45 @@
       <inertia ixx="0.16666666666666666" ixy="0" ixz="0" iyy="0.16666666666666666" iyz="0" izz="0.16666666666666666" />
     </inertial>
   </link>
+  <joint name="base_link_to_wheel_right" type="continuous">
+    <parent link="base_link" />
+    <child link="wheel_right" />
+    <origin xyz="0.035 0.05 -0.005" rpy="1.5707963267948963 0 0" />
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="wheel_right">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.033" length="0.02" />
+      </geometry>
+      <material name="wheel_right-material">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.033" length="0.02" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
   <joint name="base_link_to_wheel_left" type="continuous">
     <parent link="base_link" />
     <child link="wheel_left" />
-    <origin xyz="1.39430638208543 -1.1736814480844906 -0.2208471930668996" rpy="1.5707963267948963 0 0" />
+    <origin xyz="0.035 -0.05 -0.005" rpy="1.5707963267948963 0 0" />
     <axis xyz="0 0 1"/>
   </joint>
   <link name="wheel_left">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.5" length="0.05383527298985801" />
+        <cylinder radius="0.0325" length="0.02" />
       </geometry>
       <material name="wheel_left-material">
         <color rgba="0 0 0 1" />
@@ -46,7 +74,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.2879384563584746" length="0.05383527298985801" />
+        <cylinder radius="0.0325" length="0.02" />
       </geometry>
     </collision>
     <inertial>
@@ -58,22 +86,22 @@
   <joint name="base_link_to_omniwheel" type="fixed">
     <parent link="base_link" />
     <child link="omniwheel" />
-    <origin xyz="-1.3060831793408325 0 -0.3305897092162815" rpy="0 0 0" />
+    <origin xyz="-0.045 0 -0.015" rpy="0 0 0" />
   </joint>
   <link name="omniwheel">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.5" />
+        <sphere radius="0.02" />
       </geometry>
       <material name="omniwheel-material">
-        <color rgba="0.14702726648767014 0.10461648408208657 0.4969329950515914 1" />
+        <color rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.2" />
+        <sphere radius="0.02" />
       </geometry>
     </collision>
     <inertial>
@@ -82,53 +110,25 @@
       <inertia ixx="0.4" ixy="0" ixz="0" iyy="0.4" iyz="0" izz="0.4" />
     </inertial>
   </link>
-  <joint name="omniwheel_to_wheel_right" type="continuous">
-    <parent link="omniwheel" />
-    <child link="wheel_right" />
-    <origin xyz="2.7003895614262623 1.1909017501403918 0.10974251614938191" rpy="1.5707963267948963 0 0" />
-    <axis xyz="0 0 1"/>
+  <joint name="base_link_to_camera" type="fixed">
+    <parent link="base_link" />
+    <child link="camera" />
+    <origin xyz="0.06 0 0.03" rpy="0 0 0" />
   </joint>
-  <link name="wheel_right">
+  <link name="camera">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.5" length="0.05383527298985801" />
+        <box size="0.01 0.03 0.01" />
       </geometry>
-      <material name="wheel_right-material">
+      <material name="camera-material">
         <color rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.2879384563584746" length="0.05383527298985801" />
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="1" />
-      <inertia ixx="0.33" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.33" />
-    </inertial>
-  </link>
-  <joint name="base_link_to_camera" type="fixed">
-    <parent link="base_link" />
-    <child link="camera" />
-    <origin xyz="1.6256258584357346 -0.02298885073006307 0.3695319117946291" rpy="0 0 0" />
-  </joint>
-  <link name="camera">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <box size="0.1914947774659249 0.6346109922118176 0.19215263167384591" />
-      </geometry>
-      <material name="camera-material">
-        <color rgba="0.015996293361446288 0.22696587349938613 0.07036009568874305 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <box size="0.1914947774659249 0.6346109922118176 0.19215263167384591" />
+        <box size="0.01 0.03 0.01" />
       </geometry>
     </collision>
     <inertial>
@@ -140,7 +140,7 @@
         <sensor name="front_camera" type="camera">
             <always_on>true</always_on>
             <update_rate>100</update_rate>
-            <origin>1.6256258584357346 -0.02298885073006307 0.3695319117946291 0 0 0</origin>
+            <origin>0.06 0 0.03 0 0 0</origin>
             <camera>
                 <horizontal_fov>1.3962634</horizontal_fov>
                 <image>
@@ -157,46 +157,6 @@
                     <mean>0.01</mean>
                 </noise>
             </camera>
-        </sensor>
-      </link>
-  <joint name="base_link_to_imu_sensor" type="fixed">
-    <parent link="base_link" />
-    <child link="imu_sensor" />
-    <origin xyz="-1.1282184172017464 0.06064584319013511 0.17904669409114127" rpy="0 0 0" />
-  </joint>
-  <link name="imu_sensor">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <box size="0.46603382719539876 0.45619487184483365 0.3454197767248413" />
-      </geometry>
-      <material name="imu_sensor-material">
-        <color rgba="0.2874408377161099 0.9559733532482866 0.913098651791473 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <box size="0.46603382719539876 0.45619487184483365 0.3454197767248413" />
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="1" />
-      <inertia ixx="0.16666666666666666" ixy="0" ixz="0" iyy="0.16666666666666666" iyz="0" izz="0.16666666666666666" />
-    </inertial>
-
-        <sensor type="imu" name="imu">
-            <always_on>true</always_on>
-            <update_rate>100</update_rate>
-            <origin>-1.1282184172017464 0.06064584319013511 0.17904669409114127 0 0 0</origin>
-            <imu>
-                <noise>
-                    <type>gaussian</type>
-                    <mean>0</mean>
-                    <stddev>0</stddev>
-                </noise>
-            </imu>
         </sensor>
       </link>
 </robot>
